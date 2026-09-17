@@ -1,46 +1,1120 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wema Corporate Portal</title>
-    <style>
-        :root { --wema-purple: #812990; --bg-light: #F8F9FA; --text-dark: #333333; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-dark); }
-        header { background-color: var(--wema-purple); color: white; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; }
-        header h1 { margin: 0; font-size: 1.8rem; font-weight: 600; letter-spacing: 0.5px; }
-        .hero { background: white; padding: 4rem 5%; text-align: center; border-bottom: 1px solid #E0E0E0; }
-        .hero h2 { color: var(--wema-purple); font-size: 2.5rem; margin-top: 0; }
-        .hero p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6; }
-        .container { max-width: 1200px; margin: 3rem auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--wema-purple); }
-        .card h3 { color: var(--wema-purple); margin-top: 0; }
-        footer { text-align: center; padding: 2rem; color: #777; margin-top: 2rem; font-size: 0.9rem; border-top: 1px solid #E0E0E0; }
-    </style>
+
+```
+<meta name="description" content="Wema Bank Enterprise Cloud Deployment Environment">
+<meta name="theme-color" content="#812990">
+
+<title>Wema Bank | Enterprise Cloud Environment</title>
+
+<style>
+    :root {
+        --wema-purple: #812990;
+        --wema-purple-dark: #5f1d6b;
+        --wema-purple-light: #a944b5;
+        --purple-soft: #f4eafa;
+
+        --bg: #f7f8fc;
+        --white: #ffffff;
+        --text: #1f2430;
+        --text-muted: #697386;
+
+        --success: #16835b;
+        --success-bg: #e9f8f1;
+
+        --border: #e7e9ef;
+
+        --shadow-sm: 0 4px 16px rgba(31, 36, 48, 0.06);
+        --shadow-md: 0 12px 35px rgba(31, 36, 48, 0.09);
+
+        --radius: 14px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family:
+            "Segoe UI",
+            Inter,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        background: rgba(129, 41, 144, 0.96);
+        backdrop-filter: blur(12px);
+
+        color: white;
+        padding: 18px 5%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        font-weight: 800;
+        font-size: 17px;
+    }
+
+    .brand-text strong {
+        display: block;
+        font-size: 17px;
+        letter-spacing: 0.2px;
+    }
+
+    .brand-text span {
+        display: block;
+        font-size: 11px;
+        opacity: 0.75;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 14px;
+    }
+
+    nav a {
+        opacity: 0.85;
+        transition: opacity 0.2s ease;
+    }
+
+    nav a:hover {
+        opacity: 1;
+    }
+
+    .environment-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 7px 12px;
+        border-radius: 999px;
+
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        font-size: 12px;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #43d995;
+        box-shadow: 0 0 0 4px rgba(67, 217, 149, 0.12);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+
+        background:
+            radial-gradient(
+                circle at 85% 15%,
+                rgba(129, 41, 144, 0.15),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 10% 80%,
+                rgba(169, 68, 181, 0.08),
+                transparent 25%
+            ),
+            linear-gradient(135deg, #ffffff 0%, #faf7fc 100%);
+
+        padding: 90px 5% 80px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .hero-content {
+        max-width: 1150px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 70px;
+        align-items: center;
+    }
+
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 7px 13px;
+        border-radius: 999px;
+
+        background: var(--purple-soft);
+        color: var(--wema-purple);
+
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .hero h2 {
+        margin: 20px 0 16px;
+
+        color: var(--text);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        letter-spacing: -2px;
+    }
+
+    .hero h2 span {
+        color: var(--wema-purple);
+    }
+
+    .hero p {
+        max-width: 690px;
+        margin: 0;
+
+        color: var(--text-muted);
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 12px 20px;
+        border-radius: 9px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-primary {
+        color: white;
+        background: var(--wema-purple);
+        box-shadow: 0 8px 20px rgba(129, 41, 144, 0.25);
+    }
+
+    .btn-secondary {
+        background: white;
+        border: 1px solid var(--border);
+        color: var(--text);
+    }
+
+    /* =========================
+       ARCHITECTURE VISUAL
+    ========================== */
+
+    .architecture {
+        position: relative;
+
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+
+        padding: 28px;
+
+        box-shadow: var(--shadow-md);
+    }
+
+    .architecture-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 22px;
+    }
+
+    .architecture-header strong {
+        font-size: 14px;
+    }
+
+    .architecture-header span {
+        font-size: 11px;
+        color: var(--success);
+        background: var(--success-bg);
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-weight: 700;
+    }
+
+    .architecture-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .flow-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        padding: 13px;
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        background: #fafbfc;
+    }
+
+    .flow-icon {
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background: var(--purple-soft);
+        color: var(--wema-purple);
+
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .flow-text strong {
+        display: block;
+        font-size: 13px;
+    }
+
+    .flow-text span {
+        display: block;
+        font-size: 11px;
+        color: var(--text-muted);
+    }
+
+    .flow-arrow {
+        text-align: center;
+        color: #b4bac6;
+        font-size: 12px;
+    }
+
+    /* =========================
+       STATS
+    ========================== */
+
+    .stats {
+        max-width: 1150px;
+        margin: -30px auto 0;
+
+        position: relative;
+        z-index: 10;
+
+        padding: 0 20px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+    }
+
+    .stat {
+        padding: 25px;
+        border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+        border-right: none;
+    }
+
+    .stat-label {
+        display: block;
+        color: var(--text-muted);
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .stat-value {
+        font-size: 25px;
+        font-weight: 700;
+        color: var(--wema-purple);
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================== */
+
+    .section {
+        max-width: 1150px;
+        margin: 85px auto;
+        padding: 0 20px;
+    }
+
+    .section-heading {
+        max-width: 700px;
+        margin-bottom: 35px;
+    }
+
+    .section-heading .label {
+        color: var(--wema-purple);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .section-heading h3 {
+        margin: 8px 0 10px;
+        font-size: 32px;
+        letter-spacing: -0.8px;
+    }
+
+    .section-heading p {
+        margin: 0;
+        color: var(--text-muted);
+    }
+
+    /* =========================
+       CARDS
+    ========================== */
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        position: relative;
+
+        background: white;
+        padding: 28px;
+
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+
+        box-shadow: var(--shadow-sm);
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 20px;
+
+        border-radius: 12px;
+
+        background: var(--purple-soft);
+        color: var(--wema-purple);
+
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .card h4 {
+        margin: 0 0 10px;
+        font-size: 18px;
+    }
+
+    .card p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .card-tag {
+        display: inline-block;
+
+        margin-top: 20px;
+        padding: 5px 9px;
+
+        border-radius: 6px;
+
+        background: #f3f4f7;
+        color: #697386;
+
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* =========================
+       DEPLOYMENT SECTION
+    ========================== */
+
+    .deployment {
+        background: var(--wema-purple);
+        color: white;
+
+        border-radius: 20px;
+        padding: 45px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+
+        box-shadow: 0 18px 45px rgba(129, 41, 144, 0.2);
+    }
+
+    .deployment h3 {
+        margin: 0 0 12px;
+        font-size: 30px;
+    }
+
+    .deployment p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .pipeline {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pipeline-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        padding: 12px 14px;
+
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 9px;
+
+        font-size: 13px;
+    }
+
+    .pipeline-check {
+        width: 22px;
+        height: 22px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.18);
+        font-size: 11px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+        background: #17151a;
+        color: white;
+
+        padding: 40px 5%;
+    }
+
+    .footer-content {
+        max-width: 1150px;
+        margin: auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .footer-brand strong {
+        display: block;
+        font-size: 16px;
+    }
+
+    .footer-brand span {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .footer-meta {
+        text-align: right;
+        color: #999;
+        font-size: 11px;
+        line-height: 1.8;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 900px) {
+
+        nav a {
+            display: none;
+        }
+
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 45px;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat:nth-child(2) {
+            border-right: none;
+        }
+
+        .stat:nth-child(-n + 2) {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cards {
+            grid-template-columns: 1fr;
+        }
+
+        .deployment {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        header {
+            padding: 14px 5%;
+        }
+
+        .environment-badge {
+            display: none;
+        }
+
+        .hero {
+            padding: 60px 5%;
+        }
+
+        .hero h2 {
+            font-size: 2.7rem;
+        }
+
+        .hero p {
+            font-size: 15px;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .stat {
+            padding: 18px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+        }
+
+        .section {
+            margin: 60px auto;
+        }
+
+        .deployment {
+            padding: 30px 22px;
+        }
+
+        .deployment h3 {
+            font-size: 25px;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-meta {
+            text-align: left;
+        }
+    }
+</style>
+```
+
 </head>
+
 <body>
-    <header>
-        <h1>Wema Bank</h1>
-        <nav>Corporate IT Environment</nav>
-    </header>
-    <section class="hero">
-        <h2>Welcome to the Wema Deployment Environment</h2>
-        <p>This landing page is integrated with GitHub Continuous Deployment and hosted securely on Azure App Service. Application telemetry is actively monitored.</p>
-    </section>
-    <div class="container">
-        <div class="card">
-            <h3>Docker & Containerization</h3>
-            <p>Enterprise infrastructure training for isolated, scalable container deployments and CLI management.</p>
-        </div>
-        <div class="card">
-            <h3>Cloud App Services</h3>
-            <p>Platform-as-a-Service integration for high-availability web hosting and automated Git deployments.</p>
-        </div>
-        <div class="card">
-            <h3>Infrastructure Monitoring</h3>
-            <p>Real-time resource tracking and automated incident response using Azure Monitor Action Groups.</p>
-        </div>
+
+<header>
+    <div class="brand">
+        <div class="brand-mark">W</div>
+
+```
+    <div class="brand-text">
+        <strong>Wema Bank</strong>
+        <span>Enterprise Technology</span>
     </div>
-    <footer>© 2026 Wema Bank. Enterprise Cloud Environment.</footer>
+</div>
+
+<nav>
+    <a href="#platform">Platform</a>
+    <a href="#deployment">Deployment</a>
+
+    <div class="environment-badge">
+        <span class="status-dot"></span>
+        Environment Online
+    </div>
+</nav>
+```
+
+</header>
+
+<main>
+
+```
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div>
+
+            <div class="eyebrow">
+                ● Enterprise Cloud Environment
+            </div>
+
+            <h2>
+                Welcome to the
+                <span>Wema Deployment Environment.</span>
+            </h2>
+
+            <p>
+                A secure and scalable enterprise web environment
+                powered by Azure App Service and integrated with
+                GitHub Continuous Deployment. Infrastructure health,
+                application availability and deployment activity are
+                continuously monitored.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#platform" class="btn btn-primary">
+                    Explore Platform
+                </a>
+
+                <a href="#deployment" class="btn btn-secondary">
+                    View Deployment
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- ARCHITECTURE -->
+
+        <div class="architecture">
+
+            <div class="architecture-header">
+                <strong>Deployment Architecture</strong>
+                <span>OPERATIONAL</span>
+            </div>
+
+            <div class="architecture-flow">
+
+                <div class="flow-item">
+                    <div class="flow-icon">GH</div>
+                    <div class="flow-text">
+                        <strong>GitHub</strong>
+                        <span>Source Repository</span>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-item">
+                    <div class="flow-icon">CI</div>
+                    <div class="flow-text">
+                        <strong>Continuous Deployment</strong>
+                        <span>Automated GitHub Actions Pipeline</span>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-item">
+                    <div class="flow-icon">AZ</div>
+                    <div class="flow-text">
+                        <strong>Azure App Service</strong>
+                        <span>Managed Cloud Hosting</span>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-item">
+                    <div class="flow-icon">WEB</div>
+                    <div class="flow-text">
+                        <strong>Enterprise Web Application</strong>
+                        <span>Production Landing Page</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <span class="stat-label">Platform</span>
+            <span class="stat-value">Azure</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">Deployment</span>
+            <span class="stat-value">CI/CD</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">Environment</span>
+            <span class="stat-value">Cloud</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">Availability</span>
+            <span class="stat-value">Online</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PLATFORM -->
+
+<section class="section" id="platform">
+
+    <div class="section-heading">
+        <span class="label">Enterprise Platform</span>
+
+        <h3>
+            Built for modern cloud operations
+        </h3>
+
+        <p>
+            The environment demonstrates modern infrastructure,
+            deployment and monitoring practices used to operate
+            reliable enterprise applications.
+        </p>
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                DEV
+            </div>
+
+            <h4>
+                Docker & Containerization
+            </h4>
+
+            <p>
+                Enterprise infrastructure supporting isolated,
+                portable and scalable application workloads using
+                modern container technologies.
+            </p>
+
+            <span class="card-tag">
+                Container Platform
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                AZ
+            </div>
+
+            <h4>
+                Azure App Services
+            </h4>
+
+            <p>
+                Managed cloud hosting designed for scalable web
+                applications, automated deployments and simplified
+                infrastructure operations.
+            </p>
+
+            <span class="card-tag">
+                Cloud Platform
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                MON
+            </div>
+
+            <h4>
+                Infrastructure Monitoring
+            </h4>
+
+            <p>
+                Application and infrastructure observability through
+                telemetry, health monitoring, metrics and automated
+                operational alerts.
+            </p>
+
+            <span class="card-tag">
+                Observability
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                CI
+            </div>
+
+            <h4>
+                Continuous Integration
+            </h4>
+
+            <p>
+                Source-controlled development workflows with automated
+                validation and deployment through GitHub Actions.
+            </p>
+
+            <span class="card-tag">
+                DevOps
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                SEC
+            </div>
+
+            <h4>
+                Secure Infrastructure
+            </h4>
+
+            <p>
+                Enterprise cloud workloads designed around controlled
+                access, secure deployment practices and managed Azure
+                services.
+            </p>
+
+            <span class="card-tag">
+                Security
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                API
+            </div>
+
+            <h4>
+                Application Integration
+            </h4>
+
+            <p>
+                Cloud-ready architecture supporting APIs, application
+                services and integration with enterprise technology
+                platforms.
+            </p>
+
+            <span class="card-tag">
+                Integration
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEPLOYMENT -->
+
+<section class="section" id="deployment">
+
+    <div class="deployment">
+
+        <div>
+
+            <h3>
+                Deployment Pipeline
+            </h3>
+
+            <p>
+                Changes to the application can be delivered through
+                an automated Git-based deployment workflow, providing
+                a consistent path from source control to the Azure
+                hosting environment.
+            </p>
+
+        </div>
+
+
+        <div class="pipeline">
+
+            <div class="pipeline-item">
+                <div class="pipeline-check">✓</div>
+                Source code committed
+            </div>
+
+            <div class="pipeline-item">
+                <div class="pipeline-check">✓</div>
+                GitHub Actions triggered
+            </div>
+
+            <div class="pipeline-item">
+                <div class="pipeline-check">✓</div>
+                Application validated
+            </div>
+
+            <div class="pipeline-item">
+                <div class="pipeline-check">✓</div>
+                Azure deployment initiated
+            </div>
+
+            <div class="pipeline-item">
+                <div class="pipeline-check">✓</div>
+                Application available
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+```
+<div class="footer-content">
+
+    <div class="footer-brand">
+        <strong>Wema Bank</strong>
+        <span>Enterprise Cloud Environment</span>
+    </div>
+
+    <div class="footer-meta">
+        <div>© 2026 Wema Bank Plc. All rights reserved.</div>
+        <div>Powered by Azure App Service • GitHub Continuous Deployment</div>
+    </div>
+
+</div>
+```
+
+</footer>
+
 </body>
 </html>
