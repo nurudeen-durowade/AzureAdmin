@@ -26,7 +26,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5BDA0D39CEF744F9AFB39FB581C9ACB1 }}
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v5
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'wema-landing-page'
           slot-name: 'Production'
