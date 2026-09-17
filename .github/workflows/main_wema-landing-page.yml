@@ -43,13 +43,23 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: php-app
       
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4D1FF07B504C4C069AB1502F5F035E53 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6ECAEA8557D54BE1ACFBB3BE140301E3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9C96639E1AB448D69F8FC2009245AE22 }}
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
@@ -57,4 +67,4 @@ jobs:
           app-name: 'wema-landing-page'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F3E2805EAB1A469993B7116D79667865 }}
+          
